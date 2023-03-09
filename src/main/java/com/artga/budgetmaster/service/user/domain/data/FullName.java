@@ -1,4 +1,4 @@
-package com.artga.budgetmaster.service.user.domain;
+package com.artga.budgetmaster.service.user.domain.data;
 
 import static org.apache.commons.lang3.StringUtils.isAllBlank;
 

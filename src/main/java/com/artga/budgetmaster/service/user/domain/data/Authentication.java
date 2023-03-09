@@ -1,4 +1,4 @@
-package com.artga.budgetmaster.service.user.domain;
+package com.artga.budgetmaster.service.user.domain.data;
 
 public record Authentication(String password) {
 

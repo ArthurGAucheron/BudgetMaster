@@ -1,8 +1,8 @@
-package com.artga.budgetmaster.service.user.domain.service;
+package com.artga.budgetmaster.service.user.domain.ports.primary;
 
 import com.artga.budgetmaster.service.user.domain.data.User;
-import com.artga.budgetmaster.service.user.domain.ports.primary.UserServicePort;
-import com.artga.budgetmaster.service.user.domain.ports.secondary.WriteUserPersistencePort;
+import com.artga.budgetmaster.service.user.domain.data.UserId;
+import com.artga.budgetmaster.service.user.domain.ports.secondary.UserPersistencePort;
 import com.artga.budgetmaster.service.user.infrastructure.adapters.primary.dto.UserRegistrationRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -12,10 +12,10 @@ import java.time.Clock;
 public class UserDefaultService implements UserServicePort {
 
     private final Clock clock;
-    private final WriteUserPersistencePort writerUser;
+    private final UserPersistencePort writerUser;
 
     @Override
-    public String registration(UserRegistrationRequest request) {
+    public UserId registration(UserRegistrationRequest request) {
         var user = new User.Builder()
                 .withEmail(request.email())
                 .withPassword(request.password())
