@@ -20,29 +20,15 @@ public class UserJpaAdapter implements UserPersistencePort {
 
     @Override
     public UserId saveNew(User user) {
-        UserEntity entity = mapper.toEntity(user);
-        entity = repository.save(entity);
-        User domain = mapper.toDomain(entity);
-        return domain.id();
+        return mapper.toDomain(
+                repository.save(
+                    mapper.toEntity(user)
+                )
+        ).id();
     }
 
     @Override
-    public Optional<User> update(User user) {
-        return Optional.empty();
-    }
-
-    @Override
-    public void deleteById(UserId userId) {
-
-    }
-
-    @Override
-    public boolean existsUserByEmail(User user) {
-        return false;
-    }
-
-    @Override
-    public Optional<User> fetchById(UserId userId) {
-        return Optional.empty();
+    public Optional<User> getByEmail(String email) {
+        return repository.findByEmailIgnoreCase(email).map(mapper::toDomain);
     }
 }

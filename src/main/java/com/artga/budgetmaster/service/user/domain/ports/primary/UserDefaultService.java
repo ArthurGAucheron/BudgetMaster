@@ -12,10 +12,13 @@ import java.time.Clock;
 public class UserDefaultService implements UserServicePort {
 
     private final Clock clock;
-    private final UserPersistencePort writerUser;
+    private final UserPersistencePort persistencePort;
 
     @Override
     public UserId registration(UserRegistrationRequest request) {
+        if(isEmailAlreadyExist(request.email()))
+            throw new IllegalArgumentException("email already used");
+
         var user = new User.Builder()
                 .withEmail(request.email())
                 .withPassword(request.password())
@@ -23,6 +26,12 @@ public class UserDefaultService implements UserServicePort {
                 .withLastName(request.lastName())
                 .withCreatedAt(clock.instant())
                 .build();
-        return writerUser.saveNew(user);
+
+        //Todo : ajouter une validation de l'objet métier avant de l'envoyer en base de données
+        return persistencePort.saveNew(user);
+    }
+
+    private boolean isEmailAlreadyExist(String email){
+        return persistencePort.getByEmail(email).isPresent();
     }
 }
