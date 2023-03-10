@@ -5,7 +5,7 @@ C'est un projet expérimentale, dans le but d'acquérir des connaissances (desig
 # To-do list
 
 ## Api-user :
-- [ ] End Point "registration" => ajouter un contrôle sur l'existance de l'adresse mail.
+- [X] End Point "registration" => ajouter un contrôle sur l'existance de l'adresse mail.
 - [ ] End Point "registration" => ajouter une validation de l'objet domain avec java validation. Intégrer la solution directement dans le builder.
 - [ ] End Point "registration" => faire évoluter la validation de l'objet en utilisant des groupes personalisés
 - [ ] Modulariser l'application (séparation des dépendances) => 1 module "user" parents du module "domain" et du module "infrastructure"
