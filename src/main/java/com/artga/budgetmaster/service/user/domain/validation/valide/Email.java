@@ -10,9 +10,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Constraint(validatedBy = EmailValidator.class)
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EmailValid {
+public @interface Email {
 
     String message() default "Email introduced is not valid";
     Class<?>[] groups() default { };

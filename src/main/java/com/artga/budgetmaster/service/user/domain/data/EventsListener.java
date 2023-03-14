@@ -1,10 +1,13 @@
 package com.artga.budgetmaster.service.user.domain.data;
 
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 public record EventsListener(Instant createdAt, Instant modifiedAt
 ) {
     public static class Builder {
+
+        @NotNull
         private  Instant createdAt;
         private  Instant modifiedAt;
 
